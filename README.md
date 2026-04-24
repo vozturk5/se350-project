@@ -33,8 +33,8 @@
 For this project, I am building a Restaurant Ordering System. The system allows users to view a menu, create orders, add menu items, calculate totals with tax, and process payments. The program generates a receipt-style output that includes grouped items, subtotal, tax, and total.
 
 The project is designed to be scalable and will later include multiple design patterns such as Factory, Decorator, Builder, Observer, and Singleton.
-
 The Strategy design pattern is currently implemented for handling different payment methods.
+
 ---
 ## Sprint 2 Progress
 
