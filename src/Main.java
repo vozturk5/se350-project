@@ -8,5 +8,9 @@ public class Main {
         order.addItem(fries);
 
         order.printOrder();
+
+        // Strategy Pattern: choose payment method
+        PaymentStrategy payment = new CashPayment();
+        payment.pay(order.getTotal());
     }
 }
