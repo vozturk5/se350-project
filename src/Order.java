@@ -49,20 +49,42 @@ public class Order {
         }
     }
 
-    public void printOrder() {
-        System.out.println("========== ORDER RECEIPT ==========");
-        System.out.println("Order ID: " + orderId);
-        System.out.println("Status: " + status);
-        System.out.println("-----------------------------------");
+public void printOrder() {
+    System.out.println("========== ORDER RECEIPT ==========");
+    System.out.println("Order ID: " + orderId);
+    System.out.println("Status: " + status);
+    System.out.println("-----------------------------------");
 
-        for (MenuItem item : items) {
-            System.out.printf("%-15s $%.2f%n", item.getName(), item.getPrice());
+    ArrayList<String> uniqueItems = new ArrayList<>();
+
+    for (MenuItem item : items) {
+        String name = item.getName();
+
+        if (!uniqueItems.contains(name)) {
+            int quantity = 0;
+            double totalPrice = 0;
+
+            for (MenuItem i : items) {
+                if (i.getName().equals(name)) {
+                    quantity++;
+                    totalPrice += i.getPrice();
+                }
+            }
+
+            if (quantity > 1) {
+                System.out.printf("%-15s x%-2d %8s%n", name, quantity, String.format("$%.2f", totalPrice));
+            } else {
+                System.out.printf("%-15s     %8s%n", name, String.format("$%.2f", totalPrice));
+            }
+
+            uniqueItems.add(name);
         }
-
-        System.out.println("-----------------------------------");
-        System.out.printf("%-15s $%.2f%n", "Subtotal:", getSubtotal());
-        System.out.printf("%-15s $%.2f%n", "Tax:", getTax());
-        System.out.printf("%-15s $%.2f%n", "Total:", getTotal());
-        System.out.println("===================================");
     }
+
+    System.out.println("-----------------------------------");
+    System.out.printf("%-15s     %8s%n", "Subtotal:", String.format("$%.2f", getSubtotal()));
+    System.out.printf("%-15s     %8s%n", "Tax:", String.format("$%.2f", getTax()));
+    System.out.printf("%-15s     %8s%n", "Total:", String.format("$%.2f", getTotal()));
+    System.out.println("===================================");
+}
 }
