@@ -1,5 +1,6 @@
 public class CashPayment implements PaymentStrategy {
-    public void pay(double amount) {
-        System.out.println("Paid $" + amount + " using Cash");
+    public boolean pay(double amount) {
+        System.out.printf("Payment successful: $%.2f paid using Cash.%n", amount);
+        return true;
     }
 }

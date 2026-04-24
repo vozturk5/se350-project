@@ -12,9 +12,10 @@ public class Menu {
     }
 
     public void printMenu() {
-        System.out.println("Restaurant Menu:");
+        System.out.println("========== RESTAURANT MENU ==========");
         for (MenuItem item : items) {
-            System.out.println(item.getName() + " - $" + item.getPrice());
+            System.out.printf("%-15s $%.2f%n", item.getName(), item.getPrice());
         }
+        System.out.println("=====================================");
     }
 }

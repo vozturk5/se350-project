@@ -16,10 +16,18 @@ public class Main {
         Order order = new Order();
         order.addItem(burger);
         order.addItem(fries);
+        order.addItem(drink);
+        order.addItem(drink);
 
         order.printOrder();
 
-        PaymentStrategy payment = new CashPayment();
-        payment.pay(order.getTotal());
+        System.out.println();
+
+        PaymentStrategy payment = new CardPayment("4242");
+        order.checkout(payment);
+
+        System.out.println();
+
+        order.printOrder();
     }
 }
