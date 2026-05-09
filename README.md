@@ -60,3 +60,53 @@ For now, the project uses standard Java only.
 Possible libraries I may use later:
 - Java Swing or JavaFX (for GUI, if I decide to add one)
 - JUnit (for testing)
+
+---
+---
+
+## Sprint 3 Progress
+
+For Sprint 3, I added two custom design patterns to the Restaurant Ordering System: the Factory Method Pattern and the Builder Pattern.
+
+### Design Patterns Implemented in Sprint 3
+
+1. Factory Method Pattern  
+   The Factory Method Pattern is used to create menu items through factory classes instead of directly creating them in the main program. This makes the system easier to extend because new menu item types can be added by creating new factory classes.
+
+   Classes related to this pattern:
+   - MenuItemFactory
+   - BurgerFactory
+   - FriesFactory
+   - DrinkFactory
+   - DessertFactory
+   - MenuItem
+
+2. Builder Pattern  
+   The Builder Pattern is used to create orders step by step. Instead of manually creating an order and repeatedly calling addItem in the main program, the OrderBuilder allows items and quantities to be added in a cleaner chain of method calls.
+
+   Classes related to this pattern:
+   - OrderBuilder
+   - Order
+   - MenuItem
+
+### Current Program Functionality
+
+The program currently demonstrates:
+- Displaying a restaurant menu
+- Creating menu items through factory classes
+- Building an order using the Builder Pattern
+- Adding item quantities such as Drink x2
+- Calculating subtotal, tax, and total
+- Processing payment using the Strategy Pattern
+- Updating order status from CREATED to PAID
+- Printing a receipt-style order summary
+
+### Final Submission Plan
+
+For the final submission, I plan to show the Restaurant Ordering System performing a full restaurant order workflow. The demo will show menu item creation, order building, item quantities, receipt generation, payment processing, and order status updates.
+
+By the final submission, I plan to include six total custom design patterns. The current project already includes Strategy, Factory Method, and Builder. Future sprints may add patterns such as Command, State, Singleton, or Observer depending on which ones fit the project best.
+
+### Possible Problems or Risks
+
+One possible challenge is making sure each design pattern is used meaningfully instead of only being added for the requirement. Another possible issue is keeping the project organized as more pattern-related classes are added. I will need to keep the code modular and update the UML diagram as the project grows.
