@@ -1,13 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        MenuItem burger = new MenuItem("Burger", 8.99);
-        MenuItem fries = new MenuItem("Fries", 3.49);
-        MenuItem drink = new MenuItem("Drink", 1.99);
+        MenuItemFactory burgerFactory = new BurgerFactory();
+        MenuItemFactory friesFactory = new FriesFactory();
+        MenuItemFactory drinkFactory = new DrinkFactory();
+        MenuItemFactory dessertFactory = new DessertFactory();
+
+        MenuItem burger = burgerFactory.createMenuItem();
+        MenuItem fries = friesFactory.createMenuItem();
+        MenuItem drink = drinkFactory.createMenuItem();
+        MenuItem dessert = dessertFactory.createMenuItem();
 
         Menu menu = new Menu();
         menu.addItem(burger);
         menu.addItem(fries);
         menu.addItem(drink);
+        menu.addItem(dessert);
 
         menu.printMenu();
 
