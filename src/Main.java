@@ -20,11 +20,12 @@ public class Main {
 
         System.out.println();
 
-        Order order = new Order();
-        order.addItem(burger);
-        order.addItem(fries);
-        order.addItem(drink);
-        order.addItem(drink);
+        Order order = new OrderBuilder()
+                .addItem(burger)
+                .addItem(fries)
+                .addItem(drink, 2)
+                .addItem(dessert)
+                .build();
 
         order.printOrder();
 
