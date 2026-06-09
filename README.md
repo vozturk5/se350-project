@@ -110,3 +110,81 @@ By the final submission, I plan to include six total custom design patterns. The
 ### Possible Problems or Risks
 
 One possible challenge is making sure each design pattern is used meaningfully instead of only being added for the requirement. Another possible issue is keeping the project organized as more pattern-related classes are added. I will need to keep the code modular and update the UML diagram as the project grows.
+
+---
+
+## Final Project Progress
+
+After Sprint 3, I continued developing the Restaurant Ordering System by adding the remaining design patterns needed for the final project. The project now includes six total custom design patterns and demonstrates a complete restaurant order workflow.
+
+### Additional Design Patterns Implemented
+
+4. State Pattern  
+   The State Pattern is used to manage the lifecycle of an order. Instead of only storing an order status as a simple enum, the order now changes behavior based on its current state.
+
+   Classes related to this pattern:
+   - OrderState
+   - CreatedState
+   - PaidState
+   - PreparingState
+   - ReadyState
+   - CompletedState
+   - CancelledState
+   - Order
+
+   The order can move through states such as CREATED, PAID, PREPARING, READY, COMPLETED, and CANCELLED.
+
+5. Command Pattern  
+   The Command Pattern is used to represent restaurant actions as command objects. This separates actions from the main program and makes the workflow easier to extend.
+
+   Classes related to this pattern:
+   - OrderCommand
+   - AddItemCommand
+   - CheckoutCommand
+   - PrepareOrderCommand
+   - MarkReadyCommand
+   - CompleteOrderCommand
+   - CancelOrderCommand
+   - OrderInvoker
+
+   Commands are used to add items, check out an order, prepare an order, mark it ready, complete it, and cancel it.
+
+6. Singleton Pattern  
+   The Singleton Pattern is used in the RestaurantManager class. This ensures that the program uses one shared restaurant manager instance to track completed and cancelled orders.
+
+   Classes related to this pattern:
+   - RestaurantManager
+
+### Final Design Patterns Implemented
+
+The final project includes these six custom design patterns:
+
+1. Strategy Pattern - used for payment methods such as cash and card.
+2. Factory Method Pattern - used for creating menu items through factory classes.
+3. Builder Pattern - used for building orders step by step.
+4. State Pattern - used for order lifecycle behavior.
+5. Command Pattern - used for restaurant order actions.
+6. Singleton Pattern - used for the restaurant manager.
+
+### Final Program Functionality
+
+The final program demonstrates:
+- Displaying the restaurant menu
+- Creating menu items through Factory Method classes
+- Creating orders using the Builder Pattern and Command Pattern
+- Adding item quantities such as Drink x2
+- Calculating subtotal, tax, and total
+- Processing payment through the Strategy Pattern
+- Moving an order through CREATED, PAID, PREPARING, READY, and COMPLETED states
+- Cancelling an order
+- Blocking payment for a cancelled order
+- Tracking completed and cancelled orders through the Singleton RestaurantManager
+- Printing a final manager summary
+
+### Final Demo Plan
+
+For the final demo video, I plan to show the program running a full restaurant workflow. The demo will show the menu, a completed order, item quantities, receipt generation, payment processing, state changes, a cancelled order, failed payment for the cancelled order, and the final manager summary.
+
+### Bugs / Issues / Notes
+
+The project is console-based and does not include a graphical user interface. The current demo is hardcoded in Main.java instead of using live user input. This was intentional so the design patterns and program behavior can be demonstrated clearly and consistently. The main functionality works, including menu display, order creation, payment, state transitions, cancellation, receipt generation, and manager tracking.
