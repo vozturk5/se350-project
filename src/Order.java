@@ -22,6 +22,10 @@ public class Order {
         return state.getStatusName();
     }
 
+    public int getOrderId() {
+        return orderId;
+    }
+
     public void addItem(MenuItem item) {
         if (!state.canModifyOrder()) {
             System.out.println("Cannot add items when order status is " + state.getStatusName() + ".");
@@ -50,6 +54,11 @@ public class Order {
     }
 
     public void checkout(PaymentStrategy paymentStrategy) {
+        if (!state.getStatusName().equals("CREATED")) {
+            state.pay(this);
+            return;
+        }
+
         boolean paid = paymentStrategy.pay(getTotal());
 
         if (paid) {

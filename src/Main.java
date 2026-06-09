@@ -24,33 +24,66 @@ public class Main {
         menu.printMenu();
 
         System.out.println();
+        System.out.println("========== COMPLETED ORDER DEMO ==========");
 
-        Order order = new Order();
-        OrderInvoker invoker = new OrderInvoker();
+        Order completedOrder = new Order();
+        OrderInvoker completedOrderInvoker = new OrderInvoker();
 
-        invoker.runCommand(new AddItemCommand(order, burger, 1));
-        invoker.runCommand(new AddItemCommand(order, fries, 1));
-        invoker.runCommand(new AddItemCommand(order, drink, 2));
-        invoker.runCommand(new AddItemCommand(order, dessert, 1));
-
-        System.out.println();
-
-        order.printOrder();
+        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, burger, 1));
+        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, fries, 1));
+        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, drink, 2));
+        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, dessert, 1));
 
         System.out.println();
 
-        invoker.runCommand(new CheckoutCommand(order, new CardPayment("4242")));
-        invoker.runCommand(new PrepareOrderCommand(order));
-        invoker.runCommand(new MarkReadyCommand(order));
-        invoker.runCommand(new CompleteOrderCommand(order));
-
-        restaurantManager.recordCompletedOrder(order);
+        completedOrder.printOrder();
 
         System.out.println();
 
-        order.printOrder();
+        completedOrderInvoker.runCommand(new CheckoutCommand(completedOrder, new CardPayment("4242")));
+        completedOrderInvoker.runCommand(new PrepareOrderCommand(completedOrder));
+        completedOrderInvoker.runCommand(new MarkReadyCommand(completedOrder));
+        completedOrderInvoker.runCommand(new CompleteOrderCommand(completedOrder));
 
-        System.out.println("Commands executed: " + invoker.getCommandCount());
-        System.out.println("Completed orders recorded by manager: " + restaurantManager.getCompletedOrders());
+        restaurantManager.recordCompletedOrder(completedOrder);
+
+        System.out.println();
+
+        completedOrder.printOrder();
+
+        System.out.println("Commands executed for completed order: " + completedOrderInvoker.getCommandCount());
+
+        System.out.println();
+        System.out.println("========== CANCELLED ORDER DEMO ==========");
+
+        Order cancelledOrder = new Order();
+        OrderInvoker cancelledOrderInvoker = new OrderInvoker();
+
+        cancelledOrderInvoker.runCommand(new AddItemCommand(cancelledOrder, burger, 1));
+        cancelledOrderInvoker.runCommand(new AddItemCommand(cancelledOrder, drink, 1));
+
+        System.out.println();
+
+        cancelledOrder.printOrder();
+
+        System.out.println();
+
+        cancelledOrderInvoker.runCommand(new CancelOrderCommand(cancelledOrder));
+        restaurantManager.recordCancelledOrder(cancelledOrder);
+
+        System.out.println();
+
+        cancelledOrder.printOrder();
+
+        System.out.println();
+
+        System.out.println("Trying to pay cancelled order:");
+        cancelledOrderInvoker.runCommand(new CheckoutCommand(cancelledOrder, new CashPayment()));
+
+        System.out.println("Commands executed for cancelled order: " + cancelledOrderInvoker.getCommandCount());
+
+        System.out.println();
+
+        restaurantManager.printManagerSummary();
     }
 }

@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+
 public class RestaurantManager {
     private static RestaurantManager instance;
     private String restaurantName;
-    private int completedOrders;
+    private ArrayList<Order> completedOrders;
+    private ArrayList<Order> cancelledOrders;
 
     private RestaurantManager() {
         this.restaurantName = "SE350 Restaurant";
-        this.completedOrders = 0;
+        this.completedOrders = new ArrayList<>();
+        this.cancelledOrders = new ArrayList<>();
     }
 
     public static RestaurantManager getInstance() {
@@ -22,16 +26,34 @@ public class RestaurantManager {
 
     public void recordCompletedOrder(Order order) {
         if (order.getStatus().equals("COMPLETED")) {
-            completedOrders++;
-            System.out.println("Restaurant Manager recorded completed order.");
+            completedOrders.add(order);
+            System.out.println("Restaurant Manager recorded completed order #" + order.getOrderId() + ".");
+        }
+    }
+
+    public void recordCancelledOrder(Order order) {
+        if (order.getStatus().equals("CANCELLED")) {
+            cancelledOrders.add(order);
+            System.out.println("Restaurant Manager recorded cancelled order #" + order.getOrderId() + ".");
         }
     }
 
     public int getCompletedOrders() {
-        return completedOrders;
+        return completedOrders.size();
+    }
+
+    public int getCancelledOrders() {
+        return cancelledOrders.size();
     }
 
     public String getRestaurantName() {
         return restaurantName;
+    }
+
+    public void printManagerSummary() {
+        System.out.println("========== MANAGER SUMMARY ==========");
+        System.out.println("Completed orders: " + getCompletedOrders());
+        System.out.println("Cancelled orders: " + getCancelledOrders());
+        System.out.println("=====================================");
     }
 }
