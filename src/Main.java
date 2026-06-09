@@ -1,5 +1,10 @@
 public class Main {
     public static void main(String[] args) {
+        RestaurantManager restaurantManager = RestaurantManager.getInstance();
+        restaurantManager.printWelcomeMessage();
+
+        System.out.println();
+
         MenuItemFactory burgerFactory = new BurgerFactory();
         MenuItemFactory friesFactory = new FriesFactory();
         MenuItemFactory drinkFactory = new DrinkFactory();
@@ -39,10 +44,13 @@ public class Main {
         invoker.runCommand(new MarkReadyCommand(order));
         invoker.runCommand(new CompleteOrderCommand(order));
 
+        restaurantManager.recordCompletedOrder(order);
+
         System.out.println();
 
         order.printOrder();
 
         System.out.println("Commands executed: " + invoker.getCommandCount());
+        System.out.println("Completed orders recorded by manager: " + restaurantManager.getCompletedOrders());
     }
 }
