@@ -6,17 +6,25 @@ public class Order {
 
     private int orderId;
     private ArrayList<MenuItem> items;
-    private OrderStatus status;
+    private OrderState state;
 
     public Order() {
         this.orderId = nextId++;
         this.items = new ArrayList<>();
-        this.status = OrderStatus.CREATED;
+        this.state = new CreatedState();
+    }
+
+    public void setState(OrderState state) {
+        this.state = state;
+    }
+
+    public String getStatus() {
+        return state.getStatusName();
     }
 
     public void addItem(MenuItem item) {
-        if (status == OrderStatus.PAID) {
-            System.out.println("Cannot add items after the order has been paid.");
+        if (!state.canModifyOrder()) {
+            System.out.println("Cannot add items when order status is " + state.getStatusName() + ".");
             return;
         }
 
@@ -45,46 +53,66 @@ public class Order {
         boolean paid = paymentStrategy.pay(getTotal());
 
         if (paid) {
-            status = OrderStatus.PAID;
+            state.pay(this);
         }
     }
 
-public void printOrder() {
-    System.out.println("========== ORDER RECEIPT ==========");
-    System.out.println("Order ID: " + orderId);
-    System.out.println("Status: " + status);
-    System.out.println("-----------------------------------");
+    public void prepare() {
+        state.prepare(this);
+    }
 
-    ArrayList<String> uniqueItems = new ArrayList<>();
+    public void markReady() {
+        state.markReady(this);
+    }
 
-    for (MenuItem item : items) {
-        String name = item.getName();
+    public void complete() {
+        state.complete(this);
+    }
 
-        if (!uniqueItems.contains(name)) {
-            int quantity = 0;
-            double totalPrice = 0;
+    public void cancel() {
+        state.cancel(this);
+    }
 
-            for (MenuItem i : items) {
-                if (i.getName().equals(name)) {
-                    quantity++;
-                    totalPrice += i.getPrice();
+    public void printOrder() {
+        System.out.println("========== ORDER RECEIPT ==========");
+        System.out.println("Order ID: " + orderId);
+        System.out.println("Status: " + state.getStatusName());
+        System.out.println("-----------------------------------");
+
+        ArrayList<String> uniqueItems = new ArrayList<>();
+
+        for (MenuItem item : items) {
+            String name = item.getName();
+
+            if (!uniqueItems.contains(name)) {
+                int quantity = 0;
+                double totalPrice = 0;
+
+                for (MenuItem i : items) {
+                    if (i.getName().equals(name)) {
+                        quantity++;
+                        totalPrice += i.getPrice();
+                    }
                 }
-            }
 
-            if (quantity > 1) {
-                System.out.printf("%-15s x%-2d %8s%n", name, quantity, String.format("$%.2f", totalPrice));
-            } else {
-                System.out.printf("%-15s     %8s%n", name, String.format("$%.2f", totalPrice));
-            }
+                String priceStr = String.format("$%.2f", totalPrice);
 
-            uniqueItems.add(name);
+                if (quantity > 1) {
+                    System.out.printf("%-15s x%-2d %10s%n", name, quantity, priceStr);
+                } else {
+                    System.out.printf("%-15s      %10s%n", name, priceStr);
+                }
+
+                uniqueItems.add(name);
+            }
         }
-    }
 
-    System.out.println("-----------------------------------");
-    System.out.printf("%-15s     %8s%n", "Subtotal:", String.format("$%.2f", getSubtotal()));
-    System.out.printf("%-15s     %8s%n", "Tax:", String.format("$%.2f", getTax()));
-    System.out.printf("%-15s     %8s%n", "Total:", String.format("$%.2f", getTotal()));
-    System.out.println("===================================");
-}
+        System.out.println("-----------------------------------");
+
+        System.out.printf("%-15s %10s%n", "Subtotal:", String.format("$%.2f", getSubtotal()));
+        System.out.printf("%-15s %10s%n", "Tax:", String.format("$%.2f", getTax()));
+        System.out.printf("%-15s %10s%n", "Total:", String.format("$%.2f", getTotal()));
+
+        System.out.println("===================================");
+    }
 }

@@ -36,6 +36,12 @@ public class Main {
 
         System.out.println();
 
+        order.prepare();
+        order.markReady();
+        order.complete();
+
+        System.out.println();
+
         order.printOrder();
     }
 }
