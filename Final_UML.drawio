@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net" modified="2026-06-09T00:00:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram name="Final UML" id="final-uml">
+    <mxGraphModel dx="3200" dy="2200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Final UML Diagram - Restaurant Ordering System" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Strategy Pattern -->
+        <mxCell id="strategyLabel" value="Strategy Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PaymentStrategy" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;PaymentStrategy&lt;/b&gt;&lt;hr&gt;+ pay(amount: double): boolean" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CashPayment" value="&lt;b&gt;CashPayment&lt;/b&gt;&lt;hr&gt;+ pay(amount: double): boolean" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="20" y="280" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="CardPayment" value="&lt;b&gt;CardPayment&lt;/b&gt;&lt;hr&gt;- cardLastFour: String&lt;hr&gt;+ CardPayment(cardLastFour: String)&lt;br&gt;+ pay(amount: double): boolean" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="270" y="270" width="310" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cashImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CashPayment" target="PaymentStrategy"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="cardImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CardPayment" target="PaymentStrategy"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Factory Method Pattern -->
+        <mxCell id="factoryLabel" value="Factory Method Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="700" y="80" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuItemFactory" value="&lt;&lt;abstract&gt;&gt;&lt;br&gt;&lt;b&gt;MenuItemFactory&lt;/b&gt;&lt;hr&gt;+ createMenuItem(): MenuItem" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="760" y="130" width="290" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BurgerFactory" value="&lt;b&gt;BurgerFactory&lt;/b&gt;&lt;hr&gt;+ createMenuItem(): MenuItem" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="600" y="290" width="245" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FriesFactory" value="&lt;b&gt;FriesFactory&lt;/b&gt;&lt;hr&gt;+ createMenuItem(): MenuItem" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="870" y="290" width="245" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="DrinkFactory" value="&lt;b&gt;DrinkFactory&lt;/b&gt;&lt;hr&gt;+ createMenuItem(): MenuItem" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="600" y="410" width="245" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="DessertFactory" value="&lt;b&gt;DessertFactory&lt;/b&gt;&lt;hr&gt;+ createMenuItem(): MenuItem" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="870" y="410" width="245" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="burgerExt" style="endArrow=block;endFill=0;html=1" edge="1" parent="1" source="BurgerFactory" target="MenuItemFactory"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="friesExt" style="endArrow=block;endFill=0;html=1" edge="1" parent="1" source="FriesFactory" target="MenuItemFactory"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="drinkExt" style="endArrow=block;endFill=0;html=1" edge="1" parent="1" source="DrinkFactory" target="MenuItemFactory"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="dessertExt" style="endArrow=block;endFill=0;html=1" edge="1" parent="1" source="DessertFactory" target="MenuItemFactory"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Core Classes -->
+        <mxCell id="coreLabel" value="Core Order Classes" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1280" y="80" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MenuItem" value="&lt;b&gt;MenuItem&lt;/b&gt;&lt;hr&gt;- name: String&lt;br&gt;- price: double&lt;hr&gt;+ MenuItem(name: String, price: double)&lt;br&gt;+ getName(): String&lt;br&gt;+ getPrice(): double" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="1260" y="130" width="330" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="Menu" value="&lt;b&gt;Menu&lt;/b&gt;&lt;hr&gt;- items: ArrayList&lt;MenuItem&gt;&lt;hr&gt;+ Menu()&lt;br&gt;+ addItem(item: MenuItem): void&lt;br&gt;+ printMenu(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="1660" y="130" width="330" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="Order" value="&lt;b&gt;Order&lt;/b&gt;&lt;hr&gt;- nextId: int&lt;br&gt;- TAX_RATE: double&lt;br&gt;- orderId: int&lt;br&gt;- items: ArrayList&lt;MenuItem&gt;&lt;br&gt;- state: OrderState&lt;hr&gt;+ Order()&lt;br&gt;+ setState(state: OrderState): void&lt;br&gt;+ getStatus(): String&lt;br&gt;+ getOrderId(): int&lt;br&gt;+ addItem(item: MenuItem): void&lt;br&gt;+ getSubtotal(): double&lt;br&gt;+ getTax(): double&lt;br&gt;+ getTotal(): double&lt;br&gt;+ checkout(paymentStrategy: PaymentStrategy): void&lt;br&gt;+ prepare(): void&lt;br&gt;+ markReady(): void&lt;br&gt;+ complete(): void&lt;br&gt;+ cancel(): void&lt;br&gt;+ printOrder(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="1260" y="330" width="420" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="menuAgg" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="Menu" target="MenuItem"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="orderAgg" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="Order" target="MenuItem"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="orderStrategy" style="endArrow=open;html=1;endFill=0;dashed=1" edge="1" parent="1" source="Order" target="PaymentStrategy"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="factoryCreates" style="endArrow=open;html=1;dashed=1;endFill=0" edge="1" parent="1" source="MenuItemFactory" target="MenuItem"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Builder Pattern -->
+        <mxCell id="builderLabel" value="Builder Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="500" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderBuilder" value="&lt;b&gt;OrderBuilder&lt;/b&gt;&lt;hr&gt;- order: Order&lt;hr&gt;+ OrderBuilder()&lt;br&gt;+ addItem(item: MenuItem): OrderBuilder&lt;br&gt;+ addItem(item: MenuItem, quantity: int): OrderBuilder&lt;br&gt;+ build(): Order" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="40" y="550" width="430" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="builderOrder" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="OrderBuilder" target="Order"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="builderItem" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="OrderBuilder" target="MenuItem"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- State Pattern -->
+        <mxCell id="stateLabel" value="State Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="760" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderState" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;OrderState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1">
+          <mxGeometry x="40" y="810" width="400" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="CreatedState" value="&lt;b&gt;CreatedState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="500" y="790" width="300" height="190" as="geometry" /></mxCell>
+        <mxCell id="PaidState" value="&lt;b&gt;PaidState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="840" y="790" width="300" height="190" as="geometry" /></mxCell>
+        <mxCell id="PreparingState" value="&lt;b&gt;PreparingState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1180" y="790" width="320" height="190" as="geometry" /></mxCell>
+        <mxCell id="ReadyState" value="&lt;b&gt;ReadyState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1540" y="790" width="300" height="190" as="geometry" /></mxCell>
+        <mxCell id="CompletedState" value="&lt;b&gt;CompletedState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="500" y="1030" width="320" height="190" as="geometry" /></mxCell>
+        <mxCell id="CancelledState" value="&lt;b&gt;CancelledState&lt;/b&gt;&lt;hr&gt;+ getStatusName(): String&lt;br&gt;+ canModifyOrder(): boolean&lt;br&gt;+ pay(order: Order): void&lt;br&gt;+ prepare(order: Order): void&lt;br&gt;+ markReady(order: Order): void&lt;br&gt;+ complete(order: Order): void&lt;br&gt;+ cancel(order: Order): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="860" y="1030" width="320" height="190" as="geometry" /></mxCell>
+        <mxCell id="createdImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CreatedState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="paidImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="PaidState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="prepImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="PreparingState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="readyImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="ReadyState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="completedImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CompletedState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="cancelledImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CancelledState" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="orderStateAssoc" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="Order" target="OrderState"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Command Pattern -->
+        <mxCell id="commandLabel" value="Command Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="1280" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderCommand" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;OrderCommand&lt;/b&gt;&lt;hr&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1"><mxGeometry x="40" y="1330" width="260" height="100" as="geometry" /></mxCell>
+        <mxCell id="AddItemCommand" value="&lt;b&gt;AddItemCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;br&gt;- item: MenuItem&lt;br&gt;- quantity: int&lt;hr&gt;+ AddItemCommand(order: Order, item: MenuItem, quantity: int)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="350" y="1270" width="430" height="160" as="geometry" /></mxCell>
+        <mxCell id="CheckoutCommand" value="&lt;b&gt;CheckoutCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;br&gt;- paymentStrategy: PaymentStrategy&lt;hr&gt;+ CheckoutCommand(order: Order, paymentStrategy: PaymentStrategy)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="820" y="1270" width="460" height="150" as="geometry" /></mxCell>
+        <mxCell id="PrepareOrderCommand" value="&lt;b&gt;PrepareOrderCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;hr&gt;+ PrepareOrderCommand(order: Order)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1320" y="1270" width="360" height="130" as="geometry" /></mxCell>
+        <mxCell id="MarkReadyCommand" value="&lt;b&gt;MarkReadyCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;hr&gt;+ MarkReadyCommand(order: Order)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="350" y="1460" width="360" height="130" as="geometry" /></mxCell>
+        <mxCell id="CompleteOrderCommand" value="&lt;b&gt;CompleteOrderCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;hr&gt;+ CompleteOrderCommand(order: Order)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="760" y="1460" width="390" height="130" as="geometry" /></mxCell>
+        <mxCell id="CancelOrderCommand" value="&lt;b&gt;CancelOrderCommand&lt;/b&gt;&lt;hr&gt;- order: Order&lt;hr&gt;+ CancelOrderCommand(order: Order)&lt;br&gt;+ execute(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=11;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1200" y="1460" width="360" height="130" as="geometry" /></mxCell>
+        <mxCell id="OrderInvoker" value="&lt;b&gt;OrderInvoker&lt;/b&gt;&lt;hr&gt;- commandHistory: ArrayList&lt;OrderCommand&gt;&lt;hr&gt;+ OrderInvoker()&lt;br&gt;+ runCommand(command: OrderCommand): void&lt;br&gt;+ getCommandCount(): int" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1650" y="1400" width="430" height="150" as="geometry" /></mxCell>
+        <mxCell id="addCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="AddItemCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="checkoutCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CheckoutCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="prepareCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="PrepareOrderCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="readyCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="MarkReadyCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="completeCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CompleteOrderCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="cancelCommandImpl" style="endArrow=block;endFill=0;html=1;dashed=1" edge="1" parent="1" source="CancelOrderCommand" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="invokerUsesCommand" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="OrderInvoker" target="OrderCommand"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="commandsUseOrder" style="endArrow=open;html=1;endFill=0;dashed=1" edge="1" parent="1" source="AddItemCommand" target="Order"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Singleton Pattern -->
+        <mxCell id="singletonLabel" value="Singleton Pattern" style="text;html=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" vertex="1" parent="1"><mxGeometry x="1730" y="500" width="230" height="30" as="geometry" /></mxCell>
+        <mxCell id="RestaurantManager" value="&lt;b&gt;RestaurantManager&lt;/b&gt;&lt;hr&gt;- instance: RestaurantManager&lt;br&gt;- restaurantName: String&lt;br&gt;- completedOrders: ArrayList&lt;Order&gt;&lt;br&gt;- cancelledOrders: ArrayList&lt;Order&gt;&lt;hr&gt;- RestaurantManager()&lt;br&gt;+ getInstance(): RestaurantManager&lt;br&gt;+ printWelcomeMessage(): void&lt;br&gt;+ recordCompletedOrder(order: Order): void&lt;br&gt;+ recordCancelledOrder(order: Order): void&lt;br&gt;+ getCompletedOrders(): int&lt;br&gt;+ getCancelledOrders(): int&lt;br&gt;+ getRestaurantName(): String&lt;br&gt;+ printManagerSummary(): void" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontFamily=Courier New;fontSize=12;spacingTop=6" vertex="1" parent="1"><mxGeometry x="1730" y="550" width="430" height="300" as="geometry" /></mxCell>
+        <mxCell id="managerUsesOrder" style="endArrow=open;html=1;endFill=0" edge="1" parent="1" source="RestaurantManager" target="Order"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
