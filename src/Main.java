@@ -20,28 +20,29 @@ public class Main {
 
         System.out.println();
 
-        Order order = new OrderBuilder()
-                .addItem(burger)
-                .addItem(fries)
-                .addItem(drink, 2)
-                .addItem(dessert)
-                .build();
+        Order order = new Order();
+        OrderInvoker invoker = new OrderInvoker();
 
-        order.printOrder();
-
-        System.out.println();
-
-        PaymentStrategy payment = new CardPayment("4242");
-        order.checkout(payment);
-
-        System.out.println();
-
-        order.prepare();
-        order.markReady();
-        order.complete();
+        invoker.runCommand(new AddItemCommand(order, burger, 1));
+        invoker.runCommand(new AddItemCommand(order, fries, 1));
+        invoker.runCommand(new AddItemCommand(order, drink, 2));
+        invoker.runCommand(new AddItemCommand(order, dessert, 1));
 
         System.out.println();
 
         order.printOrder();
+
+        System.out.println();
+
+        invoker.runCommand(new CheckoutCommand(order, new CardPayment("4242")));
+        invoker.runCommand(new PrepareOrderCommand(order));
+        invoker.runCommand(new MarkReadyCommand(order));
+        invoker.runCommand(new CompleteOrderCommand(order));
+
+        System.out.println();
+
+        order.printOrder();
+
+        System.out.println("Commands executed: " + invoker.getCommandCount());
     }
 }
