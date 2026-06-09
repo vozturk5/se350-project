@@ -26,20 +26,21 @@ public class Main {
         System.out.println();
         System.out.println("========== COMPLETED ORDER DEMO ==========");
 
-        Order completedOrder = new Order();
+        // Builder Pattern: build the completed order step by step
+        Order completedOrder = new OrderBuilder()
+                .addItem(burger)
+                .addItem(fries)
+                .addItem(drink, 2)
+                .addItem(dessert)
+                .build();
+
         OrderInvoker completedOrderInvoker = new OrderInvoker();
-
-        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, burger, 1));
-        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, fries, 1));
-        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, drink, 2));
-        completedOrderInvoker.runCommand(new AddItemCommand(completedOrder, dessert, 1));
-
-        System.out.println();
 
         completedOrder.printOrder();
 
         System.out.println();
 
+        // Command Pattern: execute order actions as command objects
         completedOrderInvoker.runCommand(new CheckoutCommand(completedOrder, new CardPayment("4242")));
         completedOrderInvoker.runCommand(new PrepareOrderCommand(completedOrder));
         completedOrderInvoker.runCommand(new MarkReadyCommand(completedOrder));
